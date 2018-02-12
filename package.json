@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "description": "The default blueprint for ember-cli addons.",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "ember-cli-addon-docs-plugin"
   ],
   "license": "MIT",
   "author": "",
@@ -20,8 +21,12 @@
   },
   "dependencies": {
     "broccoli-esdoc": "^0.1.0",
+    "broccoli-funnel": "^2.0.1",
     "broccoli-persistent-filter": "^1.4.3",
-    "ember-cli-babel": "^6.6.0"
+    "ember-cli-babel": "^6.6.0",
+    "esdoc-accessor-plugin": "^1.0.0",
+    "esdoc-ecmascript-proposal-plugin": "^1.0.0",
+    "json-api-serializer": "^1.10.3"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",

@@ -1,7 +1,9 @@
 'use strict';
 
 const ESDocCompiler = require('broccoli-esdoc');
-const ESDoc2JsonApi = require('./lib/esdoc-2-json-api');
+const Funnel = require('broccoli-funnel');
+
+const ESDoc2JsonApi = require('./lib/broccoli/esdoc-2-json-api');
 
 const ESDOC_PLUGINS = [
   {
@@ -24,12 +26,17 @@ const ESDOC_PLUGINS = [
 module.exports = {
   name: 'ember-cli-addon-docs-esdoc',
 
-  createDocsGenerator(inputPaths, { project, destDir }) {
+  createDocsGenerator(inputPaths, { parentAddon, destDir }) {
     let esdoc = new ESDocCompiler(inputPaths, {
       plugins: ESDOC_PLUGINS,
+      source: './',
       dest: `./${destDir}`
     });
 
-    return new ESDoc2JsonApi(esdoc, { project });
+    let esdocWithoutAst = new Funnel(esdoc, {
+      exclude: ['docs/ast']
+    })
+
+    return new ESDoc2JsonApi(esdocWithoutAst, { parentAddon });
   }
 };
